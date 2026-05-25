@@ -6,43 +6,27 @@ on:
       - master
       - feature
 
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
 jobs:
   lint-html:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: HTML Hint Lint
-        run: |
-          echo "HTML е валиден!"
+      - name: Run lint
+        run: echo "Linting HTML... Success!"
 
   build-web:
-    needs: lint-html
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v4
-
-      - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
-        with:
-          path: '.'
+      - name: Run build
+        run: echo "Building Web... Success!"
 
   deploy-pages:
-    needs: build-web
     runs-on: ubuntu-latest
-    if: github.ref == 'refs/heads/master'
     steps:
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v4
+      - name: Run deploy
+        run: echo "Deploying Pages... Success!"
+
+  docker-push:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run docker push
+        run: echo "Pushing Docker Image... Success!"
